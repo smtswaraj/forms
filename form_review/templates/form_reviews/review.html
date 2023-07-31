@@ -1,0 +1,26 @@
+{% extends 'form_reviews/base.html' %}
+
+{% block content %}
+    <form action="" method='POST'>
+        {% csrf_token %}
+        {% comment %} <label for="Username">Name</label>
+        <input type="text" id="Username" name="Username"> {% endcomment %}
+        <div class = 'form.action' {% if form.user_name.errors %}errors{% endif %}>
+            {% for i in form %}
+            {{i.label_tag}}{{i}}<br><br>
+            {{i.errors}}
+            {% endfor %}
+            {% comment %} {{form}} {% endcomment %}
+            {% comment %} {{form.username.lable_tag}}
+            {{form.username}}<br><br>
+            {{form.feedback.lable_tag}}
+            {{form.username}} {% endcomment %}
+        </div>
+        
+
+        <button type="submit">Send</button>
+        {% if error %}
+            <h3>Enter a valid Username</h3>
+        {% endif %}
+    </form>
+{% endblock  %}
